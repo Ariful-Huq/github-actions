@@ -1,0 +1,11 @@
+name: Test Self Hosted Runners
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    test-self-hosted-runner-1
+    name: Verify github-runner-1
+    runs-on: [self-hosted, ec2]
