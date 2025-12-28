@@ -20,7 +20,7 @@ jobs:
         run: |
           # Install Node.js using NodeSource repository
           curl -fsSL https://deb.nodesource.com/setup_lts.sh | sudo -E bash -
-          sudo apt-get install -y nodejs
+          sudo apt-get install -y nodejs npm
 
       - name: Verify Node.js installation
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: |
           # Install Node.js using NodeSource repository
           curl -fsSL https://deb.nodesource.com/setup_lts.sh | sudo -E bash -
-          sudo apt-get install -y nodejs
+          sudo apt-get install -y nodejs npm
 
       - name: Verify Node.js installation
         run: |
