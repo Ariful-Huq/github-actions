@@ -15,9 +15,18 @@ jobs:
             echo "Runner name: github-runner-2"
             echo "Hostname: $(hostname)"
             echo "Private IP: $(hostname -I | awk '{print $1}')"
-            echo "All network info"
-            ip addr show
-    
+
+      - name: Install Node.js
+        run: |
+          # Install Node.js using NodeSource repository
+          curl -fsSL https://deb.nodesource.com/setup_lts.sh | sudo -E bash -
+          sudo apt-get install -y nodejs
+
+      - name: Verify Node.js installation
+        run: |
+          node --version
+          npm --version
+
   test-self-hosted-runner-3:
     name: Verify github-runner-3
     runs-on: [self-hosted, github-runner-3]
@@ -27,6 +36,15 @@ jobs:
             echo "Runner name: github-runner-3"
             echo "Hostname: $(hostname)"
             echo "Private IP: $(hostname -I | awk '{print $1}')"
-            echo "All network info:"
-            ip addr show
 
+      - name: Install Node.js
+        run: |
+          # Install Node.js using NodeSource repository
+          curl -fsSL https://deb.nodesource.com/setup_lts.sh | sudo -E bash -
+          sudo apt-get install -y nodejs
+
+      - name: Verify Node.js installation
+        run: |
+          node --version
+          npm --version
+ 
