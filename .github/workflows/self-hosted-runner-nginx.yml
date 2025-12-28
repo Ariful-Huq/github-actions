@@ -1,0 +1,28 @@
+name: Test Self Hosted NGINX Runner
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-self-hosted-runner-nginx:
+    name: Verify github-runner-nginx
+    runs-on: [self-hosted, github-runner-nginx]
+    steps:
+      - name: Check hostname
+        run: |
+          echo "Runner name: github-runner-nginx-proxy"
+          echo "Hostname: $(hostname)"
+          echo "Private IP: $(hostname -I | awk '{print $1}')"
+      
+      - name: Install Nginx
+        run: |
+          sudo apt update
+          sudo apt upgrade -y
+          sudo apt install -y nginx
+      
+      - name: Verify Nginx installation
+        run: |
+          nginx -v
+          sudo systemctl status nginx --no-pager

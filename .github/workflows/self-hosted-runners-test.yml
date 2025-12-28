@@ -1,9 +1,7 @@
 name: Test Self Hosted Runners
 
 on:
-    push:
-        branches:
-            - main
+  workflow_dispatch:
 
 jobs:
   test-self-hosted-runner-2:
