@@ -26,17 +26,17 @@ jobs:
 #          node --version
 #          npm --version
 
-      - name: Clone external public repository
-        run: |
-          rm -rf app
-          git clone https://github.com/roy35-909/Module-3-deployment.git app
+#      - name: Clone external public repository
+#        run: |
+#          rm -rf app
+#          git clone https://github.com/roy35-909/Module-3-deployment.git app
 
-      - name: Verify Node version
-        run: node -v
+#      - name: Verify Node version
+#        run: node -v
 
-      - name: Install dependencies
-        working-directory: app
-        run: npm install
+#      - name: Install dependencies
+#        working-directory: app
+#        run: npm install
 
   test-self-hosted-runner-2:
     name: Verify github-runner-2
@@ -60,20 +60,20 @@ jobs:
 #          node --version
 #          npm --version
       
-      - name: Clone external public repository
-        run: |
-          rm -rf app
-          git clone https://github.com/roy35-909/Module-3-deployment.git app
+#      - name: Clone external public repository
+#        run: |
+#          rm -rf app
+#          git clone https://github.com/roy35-909/Module-3-deployment.git app
 
-      - name: Verify Node version
-        run: node -v
+#      - name: Verify Node version
+#        run: node -v
 
-      - name: Install dependencies
-        working-directory: app
-        run: npm install
+#      - name: Install dependencies
+#        working-directory: app
+#        run: npm install
       
       - name: Testing the application
-        run: npm check
+        run: npm run check
 
       - name: Start app with PM2
         working-directory: app
