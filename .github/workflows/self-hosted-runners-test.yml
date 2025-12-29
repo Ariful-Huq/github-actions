@@ -68,16 +68,16 @@ jobs:
 #      - name: Verify Node version
 #        run: node -v
 
-#      - name: Install dependencies
-#        working-directory: app
-#        run: npm install
+      - name: Install dependencies
+        working-directory: app
+        run: npm install
       
-#      - name: Testing the application
-#        working-directory: app
-#        run: npm run check
+      - name: Testing the application
+        working-directory: app
+        run: npm run check
 
-      - name: Install PM2 (not recommended in ci)
-        run: sudo npm install pm2@latest -g
+#      - name: Install PM2 (not recommended in ci)
+#        run: sudo npm install pm2@latest -g
 
       - name: Start app with PM2
         working-directory: app
