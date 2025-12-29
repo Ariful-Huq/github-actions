@@ -73,6 +73,7 @@ jobs:
 #        run: npm install
       
       - name: Testing the application
+        working-directory: app
         run: npm run check
 
       - name: Start app with PM2
