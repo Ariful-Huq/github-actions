@@ -76,6 +76,9 @@ jobs:
         working-directory: app
         run: npm run check
 
+      - name: Install PM2
+        run: npm install -g pm2
+
       - name: Start app with PM2
         working-directory: app
         run: |
