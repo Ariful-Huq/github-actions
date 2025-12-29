@@ -14,18 +14,29 @@ jobs:
             echo "Hostname: $(hostname)"
             echo "Private IP: $(hostname -I | awk '{print $1}')"
 
-      - name: Install Node.js
-        run: |
-          # Install Node.js using NodeSource repository
-          sudo apt-get update
-          sudo apt-get upgrade -y
-          curl -fsSL https://deb.nodesource.com/setup_lts.sh | sudo -E bash -
-          sudo apt-get install -y nodejs npm
+#      - name: Install Node.js
+#        run: |
+         # Install Node.js using NodeSource repository
+#          sudo apt-get update
+#          curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+#          sudo apt-get install -y nodejs
 
-      - name: Verify Node.js installation
+#      - name: Verify Node.js installation
+#        run: |
+#          node --version
+#          npm --version
+
+      - name: Clone external public repository
         run: |
-          node --version
-          npm --version
+          rm -rf app
+          git clone https://github.com/roy35-909/Module-3-deployment.git app
+
+      - name: Verify Node version
+        run: node -v
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm install
 
   test-self-hosted-runner-2:
     name: Verify github-runner-2
@@ -37,16 +48,36 @@ jobs:
             echo "Hostname: $(hostname)"
             echo "Private IP: $(hostname -I | awk '{print $1}')"
 
-      - name: Install Node.js
-        run: |
+#      - name: Install Node.js
+#        run: |
           # Install Node.js using NodeSource repository
-          sudo apt-get update
-          sudo apt-get upgrade -y
-          curl -fsSL https://deb.nodesource.com/setup_lts.sh | sudo -E bash -
-          sudo apt-get install -y nodejs npm
+#          sudo apt-get update
+#          curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+#          sudo apt-get install -y nodejs
 
-      - name: Verify Node.js installation
+#      - name: Verify Node.js installation
+#        run: |
+#          node --version
+#          npm --version
+      
+      - name: Clone external public repository
         run: |
-          node --version
-          npm --version
- 
+          rm -rf app
+          git clone https://github.com/roy35-909/Module-3-deployment.git app
+
+      - name: Verify Node version
+        run: node -v
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm install
+      
+      - name: Testing the application
+        run: npm check
+
+      - name: Start app with PM2
+        working-directory: app
+        run: |
+          pm2 delete app || true
+          pm2 start npm --name app -- start
+          pm2 save

@@ -1,0 +1,101 @@
+name: System Maintenance
+
+on:
+#  schedule:
+#    - cron: '0 2 * * 0'  # Every Sunday at 2 AM UTC
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  maintenance-runner-1:
+    name: Maintain github-runner-1
+    runs-on: [self-hosted, github-runner-1]
+    steps:
+      - name: Display current system info
+        run: |
+          echo "Runner: github-runner-1"
+          echo "Hostname: $(hostname)"
+          echo "Uptime: $(uptime -p)"
+          echo "Disk usage:"
+          df -h /
+      
+      - name: Update system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get autoremove -y
+          sudo apt-get autoclean
+      
+      - name: Check Node.js version
+        run: |
+          node --version
+          npm --version
+      
+      - name: Display post-update info
+        run: |
+          echo "Updates completed"
+          echo "Disk usage after cleanup:"
+          df -h /
+
+  maintenance-runner-2:
+    name: Maintain github-runner-2
+    runs-on: [self-hosted, github-runner-2]
+    steps:
+      - name: Display current system info
+        run: |
+          echo "Runner: github-runner-2"
+          echo "Hostname: $(hostname)"
+          echo "Uptime: $(uptime -p)"
+          echo "Disk usage:"
+          df -h /
+      
+      - name: Update system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get autoremove -y
+          sudo apt-get autoclean
+      
+      - name: Check Node.js version
+        run: |
+          node --version
+          npm --version
+      
+      - name: Display post-update info
+        run: |
+          echo "Updates completed"
+          echo "Disk usage after cleanup:"
+          df -h /
+
+  maintenance-nginx:
+    name: Maintain github-runner-nginx
+    runs-on: [self-hosted, github-runner-nginx]
+    steps:
+      - name: Display current system info
+        run: |
+          echo "Runner: github-runner-nginx"
+          echo "Hostname: $(hostname)"
+          echo "Uptime: $(uptime -p)"
+          echo "Disk usage:"
+          df -h /
+      
+      - name: Update system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get autoremove -y
+          sudo apt-get autoclean
+      
+      - name: Check Nginx status and version
+        run: |
+          nginx -v
+          sudo systemctl status nginx --no-pager
+      
+      - name: Test Nginx configuration
+        run: |
+          sudo nginx -t
+      
+      - name: Display post-update info
+        run: |
+          echo "Updates completed"
+          echo "Disk usage after cleanup:"
+          df -h /
